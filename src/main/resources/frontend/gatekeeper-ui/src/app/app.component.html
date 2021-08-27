@@ -1,0 +1,66 @@
+<!-- <div class="app-navbar">
+  <mat-toolbar color="primary">
+    <button mat-button [matMenuTriggerFor]="animals">Show Resources</button>
+    <mat-menu #animals="matMenu">
+      <button mat-menu-item [matMenuTriggerFor]="lowAccess">Low Access</button>
+      <button mat-menu-item [matMenuTriggerFor]="highAccess">High Access</button>
+    </mat-menu>
+    <mat-menu #lowAccess="matMenu">
+      <button mat-menu-item>Sponge bob - The Lid</button>
+      <button mat-menu-item>Sponge bob - Theme song</button>
+    </mat-menu>
+    <mat-menu #highAccess="matMenu">
+      <button mat-menu-item>Sponge bob - Sweet Victory</button>
+      <button mat-menu-item>Alien Ant Farm - Smooth Criminal</button>
+    </mat-menu>
+  </mat-toolbar>
+</div> -->
+
+<mat-sidenav-container
+    class="example-container" (backdropClick)="close('backdrop')">
+  <mat-sidenav #sidenav (keydown.escape)="close('escape')" disableClose>
+    <p><button mat-button (click)="close('toggle button')">
+      <mat-icon aria-hidden="false" aria-label="Example home icon">keyboard_double_arrow_left</mat-icon>
+    </button></p>
+    <p class="title">Resources</p>
+    <!-- <p>
+      <button mat-button [matMenuTriggerFor]="animals">Show Resources</button>
+      <mat-menu #animals="matMenu">
+        <button mat-menu-item [matMenuTriggerFor]="lowAccess">Low Access</button>
+        <button mat-menu-item [matMenuTriggerFor]="highAccess">High Access</button>
+      </mat-menu>
+      <mat-menu #lowAccess="matMenu">
+        <button mat-menu-item>Sponge bob - The Lid</button>
+        <button mat-menu-item>Sponge bob - Theme song</button>
+      </mat-menu>
+      <mat-menu #highAccess="matMenu">
+        <button mat-menu-item>Sponge bob - Sweet Victory</button>
+        <button mat-menu-item>Alien Ant Farm - Smooth Criminal</button>
+      </mat-menu>
+    </p> -->
+    <p>
+      <mat-tree [dataSource]="dataSource" [treeControl]="treeControl">
+        <mat-tree-node *matTreeNodeDef="let node" matTreeNodePadding>
+          <button mat-icon-button><mat-icon aria-hidden="false" aria-label="Example home icon">keyboard_double_arrow_left</mat-icon></button>
+          {{node.name}}
+        </mat-tree-node>
+        <mat-tree-node *matTreeNodeDef="let node;when: hasChild" matTreeNodePadding>
+          <button mat-icon-button matTreeNodeToggle
+                  [attr.aria-label]="'Toggle ' + node.name">
+            <mat-icon class="mat-icon-rtl-mirror">
+              {{treeControl.isExpanded(node) ? 'expand_more' : 'chevron_right'}}
+            </mat-icon>
+          </button>
+          {{node.name}}
+        </mat-tree-node>
+      </mat-tree>
+    </p>
+  </mat-sidenav>
+
+  <mat-sidenav-content>
+    <div class="clickme">
+      <p><button mat-button (click)="sidenav.open()">Open Resources!</button></p>
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>
+<router-outlet></router-outlet>

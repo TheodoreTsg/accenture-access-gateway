@@ -1,0 +1,12 @@
+# Angular
+node_modules/
+
+/.idea/
+
+# JetBrains IDEs
+.idea/
+
+# Maven
+/target/*
+
+target/
