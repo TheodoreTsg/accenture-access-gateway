@@ -1,5 +1,6 @@
 # Angular
 node_modules/
+src/main/resource/public
 
 /.idea/
 
