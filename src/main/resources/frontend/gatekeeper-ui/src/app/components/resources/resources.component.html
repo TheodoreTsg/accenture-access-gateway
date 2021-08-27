@@ -1,0 +1,62 @@
+<mat-card *ngIf="resources.length != 0">
+  <mat-card-title>Resources</mat-card-title>
+  <mat-card-content>
+    <mat-accordion class="example-headers-align" multi>
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            Low Access Resources
+          </mat-panel-title>
+          <mat-panel-description>
+            Click on any low resource!
+            <mat-icon color="primary">security</mat-icon>
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+
+        <mat-selection-list [multiple]="false">
+          <mat-list-option *ngFor="let low of lowAccess" [value]="low.id">
+            <mat-divider></mat-divider>
+            {{low.value}}
+          </mat-list-option>
+        </mat-selection-list>
+
+      </mat-expansion-panel>
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            High Access Resources
+          </mat-panel-title>
+          <mat-panel-description>
+            Click on any high resource!
+            <mat-icon color="warn">security</mat-icon>
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+
+        <mat-selection-list [multiple]="false">
+          <mat-list-option *ngFor="let high of highAccess" [value]="high.id">
+            <mat-divider></mat-divider>
+            {{high.value}}
+          </mat-list-option>
+        </mat-selection-list>
+      </mat-expansion-panel>
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            No Access Resources
+          </mat-panel-title>
+          <mat-panel-description>
+            Click on any resource!
+            <mat-icon color="accent">lock_open</mat-icon>
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+
+        <mat-selection-list [multiple]="false">
+          <mat-list-option *ngFor="let noaccess of noAccess" [value]="noaccess.id">
+            <mat-divider></mat-divider>
+            {{noaccess.value}}
+          </mat-list-option>
+        </mat-selection-list>
+      </mat-expansion-panel>
+    </mat-accordion>
+  </mat-card-content>
+</mat-card>

@@ -4,6 +4,7 @@ import com.google.gson.Gson;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import you.shall.not.pass.dto.StaticResources;
 import you.shall.not.pass.filter.staticresource.StaticResourceService;
@@ -14,7 +15,7 @@ import you.shall.not.pass.service.SessionService;
 
 import javax.servlet.http.HttpServletResponse;
 import java.util.Optional;
-
+@CrossOrigin(origins = "http://localhost:4200")
 @Controller
 public class GateController {
 

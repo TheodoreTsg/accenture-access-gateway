@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -19,6 +20,8 @@ import {MatInputModule} from '@angular/material/input';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatIconModule} from '@angular/material/icon';
 import {MatTreeModule} from '@angular/material/tree';
+import { ResourcesComponent } from './components/resources/resources.component';
+import {MatExpansionModule} from '@angular/material/expansion';
 
 
 @NgModule({
@@ -27,6 +30,7 @@ import {MatTreeModule} from '@angular/material/tree';
     PageNotFoundComponent,
     HomeComponent,
     LoginComponent,
+    ResourcesComponent,
   ],
   imports: [
     BrowserModule,
@@ -43,7 +47,9 @@ import {MatTreeModule} from '@angular/material/tree';
     MatInputModule,
     MatSidenavModule,
     MatIconModule,
-    MatTreeModule
+    MatTreeModule,
+    MatExpansionModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
