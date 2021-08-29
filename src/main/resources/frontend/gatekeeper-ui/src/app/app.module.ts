@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { HttpClientModule } from '@angular/common/http';
+import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -22,6 +22,7 @@ import {MatIconModule} from '@angular/material/icon';
 import {MatTreeModule} from '@angular/material/tree';
 import { ResourcesComponent } from './components/resources/resources.component';
 import {MatExpansionModule} from '@angular/material/expansion';
+import {CrossOriginInterceptor} from './interceptor/cross-origin.interceptor';
 
 
 @NgModule({
@@ -51,7 +52,10 @@ import {MatExpansionModule} from '@angular/material/expansion';
     MatExpansionModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS, useClass: CrossOriginInterceptor, multi: true
+    }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
