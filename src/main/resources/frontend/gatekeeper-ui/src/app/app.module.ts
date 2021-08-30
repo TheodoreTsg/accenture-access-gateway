@@ -23,6 +23,12 @@ import {MatTreeModule} from '@angular/material/tree';
 import { ResourcesComponent } from './components/resources/resources.component';
 import {MatExpansionModule} from '@angular/material/expansion';
 import {CrossOriginInterceptor} from './interceptor/cross-origin.interceptor';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
+import {AuthInterceptor} from './interceptor/auth.interceptor';
+
+export const interceptorProviders = [
+  { provide: HTTP_INTERCEPTORS, useClass: CrossOriginInterceptor, multi: true },
+  { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }];
 
 
 @NgModule({
@@ -50,12 +56,10 @@ import {CrossOriginInterceptor} from './interceptor/cross-origin.interceptor';
     MatIconModule,
     MatTreeModule,
     MatExpansionModule,
-    HttpClientModule
+    HttpClientModule,
+    MatSnackBarModule
   ],
-  providers: [
-    {
-      provide: HTTP_INTERCEPTORS, useClass: CrossOriginInterceptor, multi: true
-    }],
+  providers: [interceptorProviders],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

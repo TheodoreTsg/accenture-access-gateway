@@ -10,24 +10,10 @@ import {Subscription} from "rxjs";
 })
 export class ResourcesComponent implements OnInit {
   private subs: Subscription[] = [];
-  step = -1;
-  lowResources: string[] = ['Boots', 'Clogs'];
   resources = [];
   lowAccess: ResourceFile[] = [];
   highAccess: ResourceFile[] = [];
   noAccess: ResourceFile[] = [];
-
-  setStep(index: number) {
-    this.step = index;
-  }
-
-  nextStep() {
-    this.step++;
-  }
-
-  prevStep() {
-    this.step--;
-  }
 
   constructor(
     private resourcesService: ResourcesService

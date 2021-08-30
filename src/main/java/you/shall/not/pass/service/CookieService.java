@@ -28,6 +28,8 @@ public class CookieService {
     public String createCookie(String name, String token, int expireInSeconds) {
         List<String> headerValues = new ArrayList<>();
         headerValues.add(name + "=" + token);
+//        headerValues.add("SameSite=None");
+//        headerValues.add("Secure");
         headerValues.add("SameSite=Strict");
         headerValues.add("Path=/");
         headerValues.add("HttpOnly");

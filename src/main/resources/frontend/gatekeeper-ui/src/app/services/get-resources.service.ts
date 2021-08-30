@@ -1,5 +1,5 @@
 import {Injectable} from "@angular/core";
-import {Observable, Subject, throwError} from "rxjs";
+import {Observable, ReplaySubject, Subject, throwError} from 'rxjs';
 import {HttpClient} from "@angular/common/http";
 import {environment} from "../../environments/environment";
 import {catchError, tap} from "rxjs/operators";
@@ -14,7 +14,7 @@ import {catchError, tap} from "rxjs/operators";
   ) {
   }
 
-  private resources = new Subject();
+  private resources = new ReplaySubject();
   resources$: Observable<any> = this.resources.asObservable();
 
   initialize(): void {

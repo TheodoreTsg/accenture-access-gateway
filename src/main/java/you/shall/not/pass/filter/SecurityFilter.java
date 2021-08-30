@@ -8,6 +8,7 @@ import org.springframework.core.annotation.Order;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Component;
 import javax.servlet.*;
+import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
@@ -27,6 +28,7 @@ import you.shall.not.pass.service.SessionService;
 
 @Component
 @Order(1)
+@WebFilter("/filter-response-header/*")
 public class SecurityFilter implements Filter {
 
     public static final String SESSION_COOKIE = "GRANT";

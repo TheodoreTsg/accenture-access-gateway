@@ -2,8 +2,9 @@ import {Injectable} from "@angular/core";
 import {Observable, Subject, throwError} from "rxjs";
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {environment} from "../../environments/environment";
-import {catchError, tap} from "rxjs/operators";
+import {catchError} from "rxjs/operators";
 import {Authenticated} from '../shared/models/models';
+import {ErrorService} from './error.service';
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +12,8 @@ import {Authenticated} from '../shared/models/models';
 export class AccessService {
 
   constructor(
-    private httpClient: HttpClient
+    private httpClient: HttpClient,
+    private errorService: ErrorService
   ) {
   }
 
@@ -22,6 +24,7 @@ export class AccessService {
     )
       .pipe(
         catchError( reason => {
+          this.errorService.displayDynamicErrorMessage(reason);
           return throwError(reason);
         })
       );

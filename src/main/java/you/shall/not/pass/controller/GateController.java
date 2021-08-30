@@ -18,7 +18,6 @@ import javax.servlet.http.HttpServletResponse;
 import java.util.Optional;
 
 @Controller
-@CrossOrigin(origins = "http://localhost:4200")
 @RequestMapping("/api")
 public class GateController {
 
