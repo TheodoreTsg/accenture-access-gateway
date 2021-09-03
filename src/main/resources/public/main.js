@@ -780,7 +780,7 @@ class ResourcesService {
     constructor(httpClient, errorService) {
         this.httpClient = httpClient;
         this.errorService = errorService;
-        this.resources = new rxjs__WEBPACK_IMPORTED_MODULE_0__["ReplaySubject"]();
+        this.resources = new rxjs__WEBPACK_IMPORTED_MODULE_0__["ReplaySubject"](1);
         this.resources$ = this.resources.asObservable();
     }
     initialize() {

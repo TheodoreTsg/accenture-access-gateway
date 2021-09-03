@@ -16,7 +16,7 @@ import {ErrorService} from "./error.service";
   ) {
   }
 
-  private resources = new ReplaySubject();
+  private resources = new ReplaySubject<any>(1);
   resources$: Observable<any> = this.resources.asObservable();
 
   initialize(): void {
