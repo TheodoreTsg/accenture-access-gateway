@@ -24,7 +24,9 @@ import { ResourcesComponent } from './components/resources/resources.component';
 import {MatExpansionModule} from '@angular/material/expansion';
 import {CrossOriginInterceptor} from './interceptor/cross-origin.interceptor';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
+
 import {AuthInterceptor} from './interceptor/auth.interceptor';
+import {CookieService} from 'ngx-cookie-service';
 
 export const interceptorProviders = [
   { provide: HTTP_INTERCEPTORS, useClass: CrossOriginInterceptor, multi: true },
@@ -59,7 +61,7 @@ export const interceptorProviders = [
     HttpClientModule,
     MatSnackBarModule
   ],
-  providers: [interceptorProviders],
+  providers: [interceptorProviders, CookieService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

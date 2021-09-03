@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-// import {ButtonModule} from 'primeng/button';
 
 @Component({
   selector: 'app-home',
@@ -8,9 +7,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
+  resource = '';
+
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  showResource(resource: any): void {
+    this.resource = resource;
   }
 
 }

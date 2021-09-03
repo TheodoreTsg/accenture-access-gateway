@@ -1,4 +1,4 @@
-import { Component, Output, EventEmitter, OnInit } from '@angular/core';
+import {Component, Output, EventEmitter, OnInit, Input} from '@angular/core';
 import {FormGroup, FormControl, Validators} from '@angular/forms';
 import {AccessService} from '../../services/access.service';
 import {Authenticated} from '../../shared/models/models';
@@ -6,6 +6,7 @@ import {MatSnackBar, MatSnackBarHorizontalPosition, MatSnackBarVerticalPosition}
 import {catchError} from 'rxjs/operators';
 import {error} from 'protractor';
 import {throwError} from 'rxjs';
+import {ActivatedRoute, Route, Router} from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -24,25 +25,28 @@ export class LoginComponent implements OnInit {
   usernameError = 'You must enter a Username!';
   passwordError = 'You must enter a Password!';
   hide = true;
-
-  horizontalPosition: MatSnackBarHorizontalPosition = 'start';
-  verticalPosition: MatSnackBarVerticalPosition = 'bottom';
+  level = '';
 
   constructor(
     private accessService: AccessService,
-    private _snackBar: MatSnackBar
+    private _snackBar: MatSnackBar,
+    private router: Router,
+    private route: ActivatedRoute
   ) { }
 
   ngOnInit(): void {
+    this.level = this.route.snapshot.queryParams['Level'];
   }
 
   onSubmit(): void {
     if (this.loginForm.valid) {
-      let loginParam = '1';
-      loginParam = loginParam + '#' + this.loginForm.value.username + ':' + this.loginForm.value.password;
+      let loginParam = this.level + '#' + this.loginForm.value.username + ':' + this.loginForm.value.password;
       this.accessService.access(btoa(loginParam)).subscribe(
         (data: Authenticated) => {
-          this.openSnackBar('Authentication Successful!', 'Close');
+          if(data) {
+            this.router.navigateByUrl('home');
+            this.openSnackBar('Authentication Successful!', 'Close');
+          }
         }
       );
     }

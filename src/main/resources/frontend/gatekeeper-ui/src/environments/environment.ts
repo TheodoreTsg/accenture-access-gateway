@@ -5,10 +5,10 @@
 export const environment = {
   production: false,
   serverURL: 'http://',
-  authURL: 'localhost:8080/api/',
+  authURL: 'localhost:8080',
   api: {
-    resources: 'resources',
-    access: 'access'
+    resources: '/api/resources',
+    access: '/api/access'
   }
 };
 

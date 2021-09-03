@@ -1,7 +1,7 @@
 <mat-card *ngIf="resources.length != 0">
   <mat-card-title>Resources</mat-card-title>
   <mat-card-content>
-    <mat-accordion class="example-headers-align" multi>
+    <mat-accordion class="example-headers-align">
       <mat-expansion-panel>
         <mat-expansion-panel-header>
           <mat-panel-title>
@@ -14,7 +14,7 @@
         </mat-expansion-panel-header>
 
         <mat-selection-list [multiple]="false">
-          <mat-list-option *ngFor="let low of lowAccess" [value]="low.id">
+          <mat-list-option *ngFor="let low of lowAccess" [value]="low.id" (click)="resourceSelected(low.id, '1')">
             <mat-divider></mat-divider>
             {{low.value}}
           </mat-list-option>
@@ -33,7 +33,7 @@
         </mat-expansion-panel-header>
 
         <mat-selection-list [multiple]="false">
-          <mat-list-option *ngFor="let high of highAccess" [value]="high.id">
+          <mat-list-option *ngFor="let high of highAccess" [value]="high.id" (click)="resourceSelected(high.id, '2')">
             <mat-divider></mat-divider>
             {{high.value}}
           </mat-list-option>
@@ -51,9 +51,9 @@
         </mat-expansion-panel-header>
 
         <mat-selection-list [multiple]="false">
-          <mat-list-option *ngFor="let noaccess of noAccess" [value]="noaccess.id">
+          <mat-list-option *ngFor="let no_access of noAccess" [value]="no_access.id" (click)="resourceSelected(no_access.id, '0')">
             <mat-divider></mat-divider>
-            {{noaccess.value}}
+            {{no_access.value}}
           </mat-list-option>
         </mat-selection-list>
       </mat-expansion-panel>

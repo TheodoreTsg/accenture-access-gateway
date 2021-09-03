@@ -1,8 +1,9 @@
 import {Injectable} from "@angular/core";
-import {Observable, ReplaySubject, Subject, throwError} from 'rxjs';
-import {HttpClient} from "@angular/common/http";
+import {Observable, ReplaySubject, throwError} from 'rxjs';
+import {HttpClient, HttpParams} from '@angular/common/http';
 import {environment} from "../../environments/environment";
 import {catchError, tap} from "rxjs/operators";
+import {ErrorService} from "./error.service";
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +11,8 @@ import {catchError, tap} from "rxjs/operators";
   export class ResourcesService {
 
   constructor(
-    private httpClient: HttpClient
+    private httpClient: HttpClient,
+    private errorService: ErrorService
   ) {
   }
 
@@ -30,6 +32,23 @@ import {catchError, tap} from "rxjs/operators";
       .pipe(
         tap(),
         catchError( reason => {
+          return throwError(reason);
+        })
+      );
+  }
+
+  getResource(resource: string, httpParams: HttpParams): Observable<any> {
+    return this.httpClient.get(
+      environment.serverURL + environment.authURL + resource,
+      {
+        params: httpParams,
+        responseType: 'text'
+      },
+    )
+      .pipe(
+        tap(),
+        catchError( reason => {
+          this.errorService.displayDynamicTextErrorMessage(reason);
           return throwError(reason);
         })
       );

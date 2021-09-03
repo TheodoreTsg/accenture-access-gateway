@@ -16,4 +16,8 @@ export class ErrorService {
   displayDynamicErrorMessage(reason: any) {
     this._snackBar.open(reason.error.message, 'Close', {duration: 5000});
   }
+
+  displayDynamicTextErrorMessage(reason: any) {
+    this._snackBar.open(JSON.parse(reason.error).message, 'Close', {duration: 5000});
+  }
 }
