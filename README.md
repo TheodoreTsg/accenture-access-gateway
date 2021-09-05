@@ -83,7 +83,7 @@ GET "http://localhost:8080/level1/low_access.html?XSRF=75DA5FAF2470BAA3_15818489
 
 XSRF token should always be used with the header option for passing the csrf cookie token value to server, example above is just for simple browser tests.
 
-#Security related issues
+# Security related issues
 
 The CSRF token is placed into the URL query string, but this approach is less safe, as the query string:
 
