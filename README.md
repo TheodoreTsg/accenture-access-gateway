@@ -82,3 +82,15 @@ If no appropriate session and csrf token is received on resource request, an acc
 GET "http://localhost:8080/level1/low_access.html?XSRF=75DA5FAF2470BAA3_1581848921"
 
 XSRF token should always be used with the header option for passing the csrf cookie token value to server, example above is just for simple browser tests.
+
+#Security related issues
+
+The CSRF token is placed into the URL query string, but this approach is less safe, as the query string:
+
+* Is logged in various locations (client and server-side)
+* Can be transmitted to third parties within the HTTP Referer header
+* Can be displayed on-screen within the user’s browser
+
+To further defend against an attacker who manages to predict or capture another user’s token, we can insert the CSRF token in the custom HTTP request header.
+
+Angular packs the common security measure of reading the CSRF token called “CSRF-TOKEN”, and sets a custom header named “X-XSRF-TOKEN”.

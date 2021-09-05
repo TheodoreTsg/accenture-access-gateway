@@ -55,7 +55,7 @@ public class GateController {
                 .resources(resourceService.getAllStaticResources()).build();
         return ResponseEntity.ok(gson.toJson(resources));
     }
-
+//    We don't want our server to load our front-end app
 //    @GetMapping({"/home"})
 //    public String hello() {
 //        return "any-app";

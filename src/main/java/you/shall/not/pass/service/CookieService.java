@@ -30,6 +30,7 @@ public class CookieService {
         headerValues.add(name + "=" + token);
         headerValues.add("SameSite=Strict");
         headerValues.add("Path=/");
+//        Cookies set with httpOnly cannot be read from the browser
 //        headerValues.add("HttpOnly");
         headerValues.add("Max-Age=" + expireInSeconds);
         return headerValues.stream().collect(Collectors.joining("; "));

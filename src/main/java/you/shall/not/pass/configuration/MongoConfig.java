@@ -32,8 +32,13 @@ public class MongoConfig {
             throw new RuntimeException("No host provided for mongo db, failed connection to db!");
         }
 
-        String connectionURL = "mongodb://"+ host+":" + port;
-        return new SimpleMongoClientDbFactory(MongoClients.create(connectionURL), name);
+        // StringBuilder for String manipulation in non-multi threaded situation
+        StringBuilder  connectionURL = new StringBuilder("mongodb://");
+        connectionURL.append(host);
+        connectionURL.append(":");
+        connectionURL.append(port);
+
+        return new SimpleMongoClientDbFactory(MongoClients.create(connectionURL.toString()), name);
     }
 
     @Bean
